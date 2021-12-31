@@ -20,24 +20,25 @@ class CommercialsController < ApplicationController
 
     # GET /commercial/1
     def show
-        render json: commercial
+        render json: set_commercial
         
     end
 
     # PATCH/PUT /commercial/1
     def update
-        if commercial.update(commercial_params)
-            render json: commercial # using ActiveModel serializer so I can just say commercial
+        if set_commercial.update(commercial_params)
+            render json: set_commercial # using ActiveModel serializer so I can just say commercial
         else
             render json: {error: "Couldn't Update"}
         end
         #byebug
     end
 
-    # DELETE /people/1
+    # DELETE /commercial/1
     def destroy
-        commercial.destroy
-        render json: {message: "Successfully deleted #{commercial.name}"}
+        set_commercial.destroy
+        render json: {message: "Successfully deleted #{set_commercial.name}"}
+        # render json: set_commercial.id
     end
 end
 
@@ -46,10 +47,10 @@ private
 # Use callback to share common setup or constraints between actions
 
 def set_commercial
-    @commercial = Commercial.find_by_id(params[:id])
+    commercial = Commercial.find_by_id(params[:id])
 end
 
 def commercial_params
     params.require(:commercial).permit(:name, :url, :id)
 end
-end
+

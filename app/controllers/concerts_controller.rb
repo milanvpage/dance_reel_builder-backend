@@ -6,7 +6,7 @@ class ConcertsController < ApplicationController
     end
 
     def create
-        concert = Commercial.new(concert_params)
+        concert = Concert.new(concert_params)
         if concert.save
             render json: concert
         else
@@ -40,6 +40,6 @@ end
 private 
 
 def concert_params
-    params.require(:concert).permit(:name, :url)
+    params.require(:concert).permit(:name, :url, :id)
 end
-end
+

@@ -40,6 +40,6 @@ class TheatersController < ApplicationController
     private 
     
     def theater_params
-    params.require(:theater).permit(:name, :url)
+    params.require(:theater).permit(:name, :url, :id)
     end
-end
+
